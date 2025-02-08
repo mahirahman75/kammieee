@@ -67,7 +67,7 @@ function displayAllGifs() {
     var imageContainer = document.getElementById('image-container');
 
     // List of GIFs to display
-    var gifs = ['cat-heart.gif', 'yippee.gif', 'chopper.gif']; // Replace with actual file names
+    var gifs = ['cat-heart.gif', 'Yippee.gif', 'chopper.gif']; // Replace with actual file names
 
     // Loop through GIFs and create image elements
     gifs.forEach(gifSrc => {
