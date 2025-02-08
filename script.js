@@ -49,7 +49,7 @@ function displayPanda() {
     // Set the source (file path) for the cat image
     pandaImage.src = 'cute-panda.gif'; // Assuming the cat image is named "cat.gif"
     // Set alternative text for the image (for accessibility)
-    pandaImage.alt = 'Cat';
+    pandaImage.alt = 'Panda';
     // When the cat image is fully loaded, add it to the image container
     pandaImage.onload = function() {
         imageContainer.appendChild(pandaImage);
