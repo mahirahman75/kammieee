@@ -1,5 +1,96 @@
-// script.js
+// Create an audio object for the "Yes" button click
+const yesAudio = new Audio('yes-sound.mp3'); // Replace with your actual audio file
 
+// Function to handle button click events
+function selectOption(option) {
+    if (option === 'yes') {
+        // Play the audio
+        yesAudio.play();
+
+        // Flash rainbow colors, then display GIFs
+        flashRainbowColors(function() {
+            document.getElementById('question').style.display = 'none'; // Hide the question
+            displayAllGifs(); // Show all three GIFs
+        });
+
+    } else if (option === 'no') {
+        // Change text on the "No" button to "You sure?"
+        document.getElementById('no-button').innerText = 'You sure?';
+
+        // Increase font size of the "Yes" button
+        var yesButton = document.getElementById('yes-button');
+        var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
+        var newSize = parseFloat(currentFontSize) * 2; // Double the font size
+        yesButton.style.fontSize = newSize + 'px';
+
+    } else {
+        alert('Invalid option!');
+    }
+}
+
+// Function to flash rainbow colors and execute a callback function after 2 seconds
+function flashRainbowColors(callback) {
+    var colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'];
+    var i = 0;
+    var interval = setInterval(function() {
+        document.body.style.backgroundColor = colors[i];
+        i = (i + 1) % colors.length;
+    }, 200); // Change color every 200 milliseconds
+
+    setTimeout(function() {
+        clearInterval(interval);
+        document.body.style.backgroundColor = ''; // Reset background color
+        if (callback) {
+            callback();
+        }
+    }, 2000); // Flash colors for 2 seconds
+}
+
+// Function to display a panda GIF initially
+function displayPanda() {
+    var imageContainer = document.getElementById('image-container');
+    var pandaImage = new Image();
+    pandaImage.src = 'cute-panda.gif'; // Replace with your panda GIF file
+    pandaImage.alt = 'Panda';
+    pandaImage.style.width = '200px'; // Adjust size if needed
+    pandaImage.onload = function() {
+        imageContainer.appendChild(pandaImage);
+    };
+}
+
+// Function to display all three GIFs when "Yes" is clicked
+function displayAllGifs() {
+    // Clear existing content in the image container
+    document.getElementById('image-container').innerHTML = '';
+
+    // Get the container where the images will be displayed
+    var imageContainer = document.getElementById('image-container');
+
+    // List of GIFs to display
+    var gifs = ['cat-heart.gif', 'yippee.gif', 'chopper.gif']; // Replace with actual file names
+
+    // Loop through GIFs and create image elements
+    gifs.forEach(gifSrc => {
+        var gifImage = new Image();
+        gifImage.src = gifSrc; // Set source
+        gifImage.alt = 'Cute GIF';
+        gifImage.style.margin = '10px'; // Add some spacing
+        gifImage.style.width = '200px'; // Adjust size if needed
+
+        gifImage.onload = function() {
+            imageContainer.appendChild(gifImage);
+        };
+    });
+
+    // Hide the options container
+    document.getElementById('options').style.display = 'none';
+}
+
+// Display the panda GIF initially
+displayPanda();
+
+// script.js
+/*
 // Function to handle button click events
 function selectOption(option) {
     // Check which option was clicked
@@ -78,3 +169,4 @@ function displayCatHeart() {
 
 // Display the cat.gif initially
 displayPanda();
+*/
